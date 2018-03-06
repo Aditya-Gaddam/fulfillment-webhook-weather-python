@@ -93,6 +93,7 @@ def makeWebhookResult(data):
         return {}
 
     condition = item.get('condition')
+    forecast = item.get('forecast')
     if condition is None:
         return {}
 
@@ -100,6 +101,9 @@ def makeWebhookResult(data):
 
     speech = "Today the weather in " + location.get('city') + ": " + condition.get('text') + \
              ", and the temperature is " + condition.get('temp') + "°" + ""units.get('temperature')
+        
+    for i in range(1,10):
+        speech += '\n' + forecast[i].get('day')
 
     print("Response:")
     print(speech)
